@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from './styles.module.scss'
 
-export default function index() {
+export default function Menu({logo}) {
   return (
-    <div>index</div>
+    <div>
+      <img src={logo} alt="logo" />
+      
+    </div>
   )
 }
