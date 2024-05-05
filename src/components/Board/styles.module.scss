@@ -1,0 +1,26 @@
+.board {
+    height: 1160px;
+    width: 1160px;
+    padding: 1rem;
+    border: solid black 20px;
+    border-radius: 16px;
+    box-shadow: -3px 3px 0px 3px rgba(0, 0, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .grid {
+        display: grid;
+        height: 100%;
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 15px;
+    }
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: 000;
+}
