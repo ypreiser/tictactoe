@@ -1,34 +1,136 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [turnP1, setTurnP1] = useState(true);
+  const [winner, setWinner] = useState('');
+
+  const [board, setBoard] = useState([
+    //   0  1  2
+    [0, 0, 0], // 0
+    [0, 0, 0], // 1
+    [0, 0, 0]  // 2
+  ]);
+
+
+  const handleClick = (rowIndex, columnIndex) => {
+    if (board[rowIndex][columnIndex] === 0) {
+      const newBoard = [...board];
+      newBoard[rowIndex][columnIndex] = turnP1 ? "x" : "o";
+      setBoard(newBoard);
+
+      // בדיקה אם יש ניצחון, ואם כן הכרזה על המנצח
+      let isWinner = check(rowIndex, columnIndex, newBoard);
+      if (isWinner) {
+        turnP1 ? setWinner("x") : setWinner("o");
+      }
+
+      // החלפת תור
+      setTurnP1(!turnP1);
+    }
+  }
+
+  const check = (rowIndex, columnIndex, newBoard) => {
+    if (checkRow(newBoard[rowIndex], columnIndex) ||
+      checkColumn(rowIndex, columnIndex, newBoard) ||
+      checkDiagonal(rowIndex, columnIndex, newBoard)) {
+      return true
+    }
+  };
+
+  // בדיקה אופקית
+  const checkRow = (row = [0, 0, 0], columnIndex = Number) => {
+    if (columnIndex == 0) {
+      if (row[columnIndex] == row[columnIndex + 1] && row[columnIndex] == row[columnIndex + 2]) {
+        return true;
+      }
+    } else if (columnIndex == 1) {
+      if (row[columnIndex] == row[columnIndex - 1] && row[columnIndex] == row[columnIndex + 1]) {
+        return true;
+      }
+    } else if (columnIndex == 2) {
+      if (row[columnIndex] == row[columnIndex - 1] && row[columnIndex] == row[columnIndex - 2]) {
+        return true;
+      }
+    }
+  };
+
+  // בדיקה אנכית
+  const checkColumn = (rowIndex, columnIndex, newBoard) => {
+    if (rowIndex == 0) {
+      if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 1][columnIndex] &&
+        newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 2][columnIndex]) {
+        return true;
+      }
+    } else if (rowIndex == 1) {
+      if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 1][columnIndex] &&
+        newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 1][columnIndex]) {
+        return true;
+      }
+    } else if (rowIndex == 2) {
+      if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 1][columnIndex] &&
+        newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 2][columnIndex]) {
+        return true;
+      }
+    }
+  };
+
+  // בדיקה אלכסונית
+  const checkDiagonal = (rowIndex, columnIndex, newBoard) => {
+    if (rowIndex == 0) {
+      if (columnIndex == 0) {
+        if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 1][columnIndex + 1] &&
+          newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 2][columnIndex + 2]) {
+          return true;
+        }
+      } else if (columnIndex == 2) {
+        if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 1][columnIndex - 1] &&
+          newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 2][columnIndex - 2]) {
+          return true;
+        }
+      }
+    } else if (rowIndex == 1) {
+      if (columnIndex == 1) {
+        if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 1][columnIndex - 1] &&
+          newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 1][columnIndex + 1]) {
+          return true;
+        } if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 1][columnIndex + 1] &&
+          newBoard[rowIndex][columnIndex] == newBoard[rowIndex + 1][columnIndex - 1]) {
+          return true;
+        }
+      }
+    } else if (rowIndex == 2) {
+      if (columnIndex == 0) {
+        if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 1][columnIndex + 1] &&
+          newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 2][columnIndex + 2]) {
+          return true;
+        }
+      } else if (columnIndex == 2) {
+        if (newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 1][columnIndex - 1] &&
+          newBoard[rowIndex][columnIndex] == newBoard[rowIndex - 2][columnIndex - 2]) {
+          return true;
+        }
+      }
+    };
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <table>
+        <tbody>
+          {board.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, columnIndex) => (
+                <td key={columnIndex} onClick={() => handleClick(rowIndex, columnIndex)}>
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {winner && <div>{winner} win!</div>}
+    </div>
   )
 }
 
