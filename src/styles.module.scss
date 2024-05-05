@@ -11,6 +11,7 @@ body {
     font-weight: 400;
     font-style: normal;
 }
+
 :root{
     --bg-color: rgba(61, 122, 214, 1);
     --square-color: rgba(201, 249, 252, 1);
@@ -19,4 +20,10 @@ body {
     --btn-text-border: rgba(178, 129, 0, 1);
     --light-gray: rgba(209, 209, 209, 1);
     --dark-gray: rgba(155, 155, 155, 1);
+}
+
+button{
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
 }

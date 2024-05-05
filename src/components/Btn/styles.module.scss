@@ -1,0 +1,10 @@
+.btn{
+    padding: 20px;
+    border-radius: 300px;
+    background-color: var(--btn-color);
+    border: none;
+    box-shadow: 0 1px 0 white, 0 10px 0 var(--btn-sub-color);
+    color: white;
+    -webkit-text-stroke: 7px var(--btn-text-border);  
+    paint-order: stroke fill;
+}
