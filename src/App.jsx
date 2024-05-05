@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-//       <Board />
+      {/* <Board /> */}
       <Routes>
         <Route path='/'>
           <Route index element={<Menu logo={logo} />} />
