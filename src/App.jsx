@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styles from './styles.module.scss'
+import Square from './components/Square';
 
 function App() {
 

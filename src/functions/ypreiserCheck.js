@@ -22,7 +22,7 @@ const checkWin = (Number) => {
         if (board[set[0]] == board[set[1]] && board[set[0]] == board[set[2]]) return true
     })
 }
-
+export default checkWin
 
 // const checkWin2 = (Number) => {
 //     if (board[Number] == board[Number + 1] &&(board[Number] == board[Number + 2]) return true
