@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import Menu from './pages/Menu'
-import ChoosePlayerPage from './pages/ChoosePlayerPage copy'
+import ChoosePlayerPage from './pages/ChoosePlayerPage'
 import GamePage from './pages/GamePage'
 import JoinGame from './pages/JoinGame'
+import Board from './components/Board'
+import styles from './styles.module.scss'
 
 function App() {
 
@@ -11,6 +13,8 @@ function App() {
 
   return (
     <div>
+      <Board />
+      {/*       
       <Routes>
         <Route path='/'>
           <Route index element={<Menu logo={logo} />} />
@@ -20,7 +24,7 @@ function App() {
             <Route path='game' element={<GamePage />} />
           </Route>
         </Route>
-      </Routes>
+      </Routes> */}
     </div>
   )
 }
