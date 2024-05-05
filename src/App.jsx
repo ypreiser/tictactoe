@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
 import Menu from './pages/Menu'
-import ChoosePlayerPage from './pages/ChoosePlayerPage copy'
 import GamePage from './pages/GamePage'
 import JoinGame from './pages/JoinGame'
+import styles from './styles.module.scss'
+
 
 function App() {
 
