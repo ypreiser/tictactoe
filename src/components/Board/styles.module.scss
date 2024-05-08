@@ -1,29 +1,22 @@
 .board {
-    height: 1160px;
-    width: 1160px;
+    // height: 1160px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    // overflow: hidden;
+    aspect-ratio: 1/1;
     padding: 1rem;
-    border: solid black 20px;
-    border-radius: 3rem;
+    border: solid black 6px;
+    border-radius: 10px;
     box-shadow: -3px 3px 0px 3px rgba(0, 0, 0, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
-    .grid {
-        padding: 2rem;
-        display: grid;
-        height: 100%;
-        width: 100%;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 1px;
-    }
+    background-color: white;
+    gap: 2px;
 }
 
 .cell {
     width: 100%;
     aspect-ratio: 1/1;
-    background-color: 000;
     display: flex;
     justify-content: center;
     align-items: center;

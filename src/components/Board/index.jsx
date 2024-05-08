@@ -5,10 +5,9 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board() {
+export default function Board({setWinner}) {
 
   const [turnP1, setTurnP1] = useState(true);
-  const [winner, setWinner] = useState('');
   const [counter, setCounter] = useState(1);
 
   const [board, setBoard] = useState([
@@ -32,7 +31,7 @@ export default function Board() {
         let isWinner = check(rowIndex, columnIndex, newBoard);
         if (isWinner) {
           turnP1 ? setWinner("x") : setWinner("o");
-          alert(winner + " win!");
+          // alert(winner + " win!");
         }
       }
 
@@ -42,7 +41,6 @@ export default function Board() {
 
   return (
     <div className={styles.board}>
-      <div className={styles.grid}>
         {board.map((row, rowIndex) => (
           row.map((cell, columnIndex) => (
             <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
@@ -50,8 +48,6 @@ export default function Board() {
             </div>
           ))
         ))}
-      </div>
-      {/* {winner && <div>{winner} win!</div>} */}
     </div>
   )
 }
