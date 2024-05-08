@@ -31,6 +31,7 @@ export default function GamePage() {
             setTurnP1={setTurnP1}
             board={board}
             setBoard={setBoard}
+            winner={winner}
           />
 
           {winner ?

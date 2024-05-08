@@ -5,9 +5,10 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board({ setWinner, turnP1, setTurnP1, board, setBoard }) {
+export default function Board({ setWinner, winner, turnP1, setTurnP1, board, setBoard }) {
 
   const [counter, setCounter] = useState(1);
+  const [winRow, setWinRow] = useState([]);
 
   // const board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // const check = ypreiserCheck
@@ -21,8 +22,9 @@ export default function Board({ setWinner, turnP1, setTurnP1, board, setBoard })
       setBoard(newBoard);
       if (counter > 4) {
 
-        let isWinner = check(rowIndex, columnIndex, newBoard);
-        if (isWinner) {
+        let winnerArray = check(rowIndex, columnIndex, newBoard);
+        if (winnerArray) {
+          setWinRow(winnerArray);
           turnP1 ? setWinner("x") : setWinner("o");
           // alert(winner + " win!");
         }
@@ -32,12 +34,20 @@ export default function Board({ setWinner, turnP1, setTurnP1, board, setBoard })
     }
   }
 
+  const active = (RI, CI) => {
+    if (!winner) {
+      return true;
+    } else {
+      return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
+    }
+  };
+
   return (
     <div className={styles.board}>
       {board.map((row, rowIndex) => (
         row.map((cell, columnIndex) => (
           <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
-            <Square player={cell} />
+            <Square player={cell} active={active(rowIndex, columnIndex)} />
           </div>
         ))
       ))}
