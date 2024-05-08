@@ -1,0 +1,62 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  justify-content: center;
+  align-items: center;
+}
+.relative{
+    position: relative;
+}
+.absolute {
+    position: absolute;
+    bottom: -10%;
+    left: 25%;
+}
+
+.wins {
+    height: 75px;
+    width: 150px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Kavoon", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: 24px;
+    background-color: black;
+    position: relative;
+    margin-left: 8px;
+    z-index: 1;
+}
+
+.symble {
+    position: absolute;
+    height: 100px;
+    width: 90px;
+    left: -35%;
+    bottom: 0;
+    z-index: 2;
+
+}
+.name {
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+    -webkit-text-stroke: 7px #4B4B4B;
+    paint-order: stroke fill;
+    font-size: 64px;
+
+
+}
+
+.avatar {
+    height: 330px;
+    aspect-ratio: 1/1;
+    border: #8EEBFF solid 10px;
+    border-radius: 100%;
+    z-index: 0;
+}

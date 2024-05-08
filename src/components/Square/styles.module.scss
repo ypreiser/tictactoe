@@ -1,10 +1,5 @@
 .sqr {
-    height: 80%;
-    max-height: 80%;
-    width: 80%;
-    max-width: 80%;
-    min-width: 80%;
-    min-height: 80%;
+    height: 95%;
     aspect-ratio: 1/1;
     background-color: var(--light-gray);
     border: black solid 8px;
@@ -13,8 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin: 10px;
+    gap: 1px;
+    margin: 1px;
 
     img {
         height: 90%;
