@@ -11,7 +11,7 @@ const winningSets = [
     "246"
 ]
 
-const checkWin = (Number) => {
+const ypreiserCheck = (Number) => {
     let setsToCheck = []
     winningSets.forEach(element => {
         if (element.includes(Number)) {
@@ -22,12 +22,5 @@ const checkWin = (Number) => {
         if (board[set[0]] == board[set[1]] && board[set[0]] == board[set[2]]) return true
     })
 }
-export default checkWin
+export default ypreiserCheck
 
-// const checkWin2 = (Number) => {
-//     if (board[Number] == board[Number + 1] &&(board[Number] == board[Number + 2]) return true
-//     || (board[Number] == board[Number + 3] == board[Number + 6]) return true
-//     || (board[Number] == board[Number + 4] == board[Number + 8]) return true
-//     || (board[Number] == board[Number - 1] == board[Number - 2]) return true
-//      (board[Number] == board[Number - 4] == board[Number - 8]) return true
-// }
