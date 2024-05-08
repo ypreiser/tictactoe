@@ -4,6 +4,7 @@ import GamePage from './pages/GamePage'
 import JoinGame from './pages/JoinGame'
 import styles from './styles.module.scss'
 import Board from './components/Board'
+import Player from './components/Player'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
         <Route path='/'>
           <Route index element={<Menu logo={logo} />} />
           <Route path='solo' element={<GamePage />} />
-          <Route path='test' element={<Board />} />
+          <Route path='testboard' element={<Board />} />
+          <Route path='testplayer' element={<Player />} />
           <Route path='multyPlayer'>
             <Route index element={<JoinGame />} />
             <Route path='game' element={<GamePage />} />
