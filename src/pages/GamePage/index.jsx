@@ -13,7 +13,7 @@ export default function GamePage() {
         <div>
 
         </div>
-        : <ChoosePlayerPage setYourPlayer={setYourPlayer}/>}
+        : <ChoosePlayerPage setYourPlayer={setYourPlayer} yourPlayer={yourPlayer}/>}
     </div>
   )
 }
