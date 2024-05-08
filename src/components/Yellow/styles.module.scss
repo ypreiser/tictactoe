@@ -1,0 +1,24 @@
+.yellow {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #FCD015;
+    height: 100px;
+    width: 100%;
+    position: relative;
+}
+
+.yellow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30px;
+    width: 110%;
+    height: 100%;
+    rotate: (-3deg);
+    background-color: #B28100;
+    z-index: -1;
+    overflow: hidden;
+    
+}
