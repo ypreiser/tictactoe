@@ -1,24 +1,30 @@
-.yellow {
-    margin-top: 150px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #FCD015;
+.relative{
     height: 100px;
     width: 100%;
     position: relative;
-}
-
-.yellow::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -30px;
-    width: 110%;
-    height: 100%;
-    rotate: (-3deg);
-    background-color: #B28100;
-    z-index: -1;
-    overflow: hidden;
     
+    .yellow {
+        // margin-top: 150px;
+        height: 100px;
+        // width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: #FCD015;
+        position: relative;
+        z-index: 3;
+
+    }
+    .after   {
+        transform: scaleX(2);
+        position: absolute;
+        top: 0;
+        left: -30px;
+        height: 100px;
+        width: 100%;
+        rotate: (-3deg);
+        background-color: #B28100;
+        overflow: hidden;
+        z-index: 2;
+    }
 }

@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import Player from '../Player'
 
-export default function Yellow() {
-    const [turnP1, setTurnP1] = useState(true)
+export default function Yellow({ turnP1 }) {
     return (
-        <div onClick={() => setTurnP1(p => !p)} className={styles.yellow}>
-            <Player symble='x' turn={turnP1} />
-            <Player symble='o' turn={!turnP1} />
+        <div className={styles.relative}>
+            <div className={styles.yellow}>
+                <Player symble='x' turn={turnP1} />
+                <Player symble='o' turn={!turnP1} />
+            </div>
+            <div className={styles.after} />
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import Square from '../Square'
 
-export default function ChoosePlayer({ setYourPlayer }) {
+export default function ChoosePlayer({ setChoose }) {
 
   const [player, setPlayer] = useState('');
 
@@ -17,6 +17,11 @@ export default function ChoosePlayer({ setYourPlayer }) {
       return false;
     }
   }
+
+  useEffect(() => {
+    setChoose(player)
+  }, [player])
+
 
   return (
     <div className={styles.choosePlayer}>

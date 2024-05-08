@@ -5,7 +5,9 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 25%;
+    z-index: 8;
 }
+
 
 .relative {
     position: relative;
@@ -14,12 +16,14 @@
 .absolute {
     position: absolute;
     bottom: -10%;
-    left: 25%;
+    left: 12%;
 }
 
 .wins {
+    white-space: nowrap;
+    padding: 13px;
     height: 20px;
-    width: 50px;
+    // width: 60px;
     border-radius: 6px;
     display: flex;
     justify-content: center;
@@ -33,14 +37,16 @@
     position: relative;
     margin-left: 8px;
     z-index: 1;
+    letter-spacing: 0;
 }
 
 .symble {
     position: absolute;
-    height: 25px;
-    width: 25px;
+    // height: 25px;
+    width: 35px;
+    aspect-ratio: 1;
     left: -15%;
-    bottom: 0;
+    bottom: -1px;
     z-index: 2;
 
 }

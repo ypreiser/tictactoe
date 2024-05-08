@@ -5,18 +5,10 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board() {
+export default function Board({ setWinner, turnP1, setTurnP1, board, setBoard }) {
 
-  const [turnP1, setTurnP1] = useState(true);
-  const [winner, setWinner] = useState('');
   const [counter, setCounter] = useState(1);
 
-  const [board, setBoard] = useState([
-    //   0  1  2
-    [0, 0, 0], // 0
-    [0, 0, 0], // 1
-    [0, 0, 0]  // 2
-  ]);
   // const board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // const check = ypreiserCheck
   const check = israelCheck
@@ -32,7 +24,7 @@ export default function Board() {
         let isWinner = check(rowIndex, columnIndex, newBoard);
         if (isWinner) {
           turnP1 ? setWinner("x") : setWinner("o");
-          alert(winner + " win!");
+          // alert(winner + " win!");
         }
       }
 
@@ -42,16 +34,13 @@ export default function Board() {
 
   return (
     <div className={styles.board}>
-      <div className={styles.grid}>
-        {board.map((row, rowIndex) => (
-          row.map((cell, columnIndex) => (
-            <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
-              <Square player={cell} />
-            </div>
-          ))
-        ))}
-      </div>
-      {/* {winner && <div>{winner} win!</div>} */}
+      {board.map((row, rowIndex) => (
+        row.map((cell, columnIndex) => (
+          <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
+            <Square player={cell} />
+          </div>
+        ))
+      ))}
     </div>
   )
 }
