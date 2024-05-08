@@ -3,6 +3,7 @@ import Menu from './pages/Menu'
 import GamePage from './pages/GamePage'
 import JoinGame from './pages/JoinGame'
 import styles from './styles.module.scss'
+import Board from './components/Board'
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div>
-{/*  <Board /> */}
+ {/* <Board /> */}
       <Routes>
         <Route path='/'>
           <Route index element={<Menu logo={logo} />} />

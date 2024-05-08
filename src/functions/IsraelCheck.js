@@ -32,12 +32,11 @@ const checkDiagonal = (rowIndex, columnIndex, newBoard) => {
     return (newBoard[0][2] == newBoard[1][1] && newBoard[0][0] == newBoard[2][0]);
   };
 
-  if ((rowIndex == 0 && columnIndex == 0) || (rowIndex == 2 && columnIndex == 2)) {
-    checkDiagonalTopR();
+  if (rowIndex == 1 && columnIndex == 1) {
+    return checkDiagonalTopR() || checkDiagonalTopL();
+  } else if ((rowIndex == 0 && columnIndex == 0) || (rowIndex == 2 && columnIndex == 2)) {
+    return checkDiagonalTopR();
   } else if ((rowIndex == 2 && columnIndex == 0) || (rowIndex == 0 && columnIndex == 2)) {
-    checkDiagonalTopL()
-  } else if (rowIndex == 1 && columnIndex == 1) {
-    checkDiagonalTopR();
-    checkDiagonalTopL()
+    return checkDiagonalTopL()
   }
 }
