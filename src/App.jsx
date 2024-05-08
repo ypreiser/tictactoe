@@ -3,7 +3,7 @@ import Menu from './pages/Menu'
 import GamePage from './pages/GamePage'
 import JoinGame from './pages/JoinGame'
 import styles from './styles.module.scss'
-
+import Board from './components/Board'
 
 function App() {
 
@@ -11,11 +11,11 @@ function App() {
 
   return (
     <div>
-//       <Board />
       <Routes>
         <Route path='/'>
           <Route index element={<Menu logo={logo} />} />
           <Route path='solo' element={<GamePage />} />
+          <Route path='test' element={<Board />} />
           <Route path='multyPlayer'>
             <Route index element={<JoinGame />} />
             <Route path='game' element={<GamePage />} />

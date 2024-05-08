@@ -23,21 +23,28 @@ const checkColumn = (columnIndex, newBoard) => {
 
 // בדיקה אלכסונית
 const checkDiagonal = (rowIndex, columnIndex, newBoard) => {
-
-  const checkDiagonalTopR = () => {
-    return (newBoard[0][0] == newBoard[1][1] && newBoard[0][0] == newBoard[2][2]);
+  const checkDiagonalL = () => {
+    return (
+      newBoard[0][0] === newBoard[1][1] &&
+      newBoard[0][0] === newBoard[2][2] &&
+      newBoard[0][0] !== 0
+    );
   };
 
-  const checkDiagonalTopL = () => {
-    return (newBoard[0][2] == newBoard[1][1] && newBoard[0][0] == newBoard[2][0]);
+  const checkDiagonalR = () => {
+    return (
+      newBoard[0][2] === newBoard[1][1] &&
+      newBoard[0][2] === newBoard[2][0] &&
+      newBoard[0][2] !== 0
+    );
   };
 
-  if ((rowIndex == 0 && columnIndex == 0) || (rowIndex == 2 && columnIndex == 2)) {
-    checkDiagonalTopR();
-  } else if ((rowIndex == 2 && columnIndex == 0) || (rowIndex == 0 && columnIndex == 2)) {
-    checkDiagonalTopL()
-  } else if (rowIndex == 1 && columnIndex == 1) {
-    checkDiagonalTopR();
-    checkDiagonalTopL()
+  if (rowIndex === 1 && columnIndex === 1) {
+    return checkDiagonalL() || checkDiagonalR();
+  } else if (rowIndex === columnIndex) {
+    return checkDiagonalL();
+  } else if (rowIndex + columnIndex === 2) {
+    return checkDiagonalR();
   }
-}
+  return false;
+};
