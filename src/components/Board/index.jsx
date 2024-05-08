@@ -5,17 +5,10 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board({setWinner}) {
+export default function Board({ setWinner, turnP1, setTurnP1, board, setBoard }) {
 
-  const [turnP1, setTurnP1] = useState(true);
   const [counter, setCounter] = useState(1);
 
-  const [board, setBoard] = useState([
-    //   0  1  2
-    [0, 0, 0], // 0
-    [0, 0, 0], // 1
-    [0, 0, 0]  // 2
-  ]);
   // const board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // const check = ypreiserCheck
   const check = israelCheck
@@ -41,13 +34,13 @@ export default function Board({setWinner}) {
 
   return (
     <div className={styles.board}>
-        {board.map((row, rowIndex) => (
-          row.map((cell, columnIndex) => (
-            <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
-              <Square player={cell} />
-            </div>
-          ))
-        ))}
+      {board.map((row, rowIndex) => (
+        row.map((cell, columnIndex) => (
+          <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
+            <Square player={cell} />
+          </div>
+        ))
+      ))}
     </div>
   )
 }

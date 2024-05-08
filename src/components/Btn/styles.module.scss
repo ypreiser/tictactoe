@@ -8,4 +8,9 @@
     -webkit-text-stroke: 7px var(--btn-text-border);  
     paint-order: stroke fill;
     text-transform: capitalize;
+    filter: saturate(0);
+}
+
+.active{
+    filter: saturate(1);
 }

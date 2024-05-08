@@ -1,10 +1,8 @@
 .board {
-    // height: 1160px;
-    width: 100%;
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
-    // overflow: hidden;
     aspect-ratio: 1/1;
     padding: 1rem;
     border: solid black 6px;
@@ -12,6 +10,7 @@
     box-shadow: -3px 3px 0px 3px rgba(0, 0, 0, 1);
     background-color: white;
     gap: 2px;
+    // margin: 50px;
 }
 
 .cell {

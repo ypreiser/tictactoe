@@ -18,13 +18,14 @@ export default function ChoosePlayerPage({ setYourPlayer }) {
         <h1>Choose Player</h1>
         <ChoosePlayer setChoose={setChoose} />
       </div>
-      <Btn 
-      text={"Let's play"}
-       size={"30px"} 
-       width={"fit-content"} 
-       padding='50px'
-       onClick={() => setYourPlayer(choose)} 
-       />
+      <Btn
+        active={choose}
+        text={"Let's play"}
+        size={"30px"}
+        width={"fit-content"}
+        padding='50px'
+        onClick={() => setYourPlayer(choose)}
+      />
     </div>
   )
 }
