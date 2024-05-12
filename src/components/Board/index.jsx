@@ -5,7 +5,7 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board({ setWinner, winner, turnP1, setTurnP1, board, setBoard, setPrevWins }) {
+export default function Board({ setWinner, winner, turnX, setTurnX, board, setBoard, setPrevWins, isSolo, yourPlayer }) {
 
   const [counter, setCounter] = useState(1);
   const [winRow, setWinRow] = useState([]);
@@ -14,34 +14,43 @@ export default function Board({ setWinner, winner, turnP1, setTurnP1, board, set
   // const check = ypreiserCheck
   const check = israelCheck
   const handleClick = (rowIndex, columnIndex) => {
-    setCounter(counter => counter + 1);
-    // console.log(counter)
-    if (board[rowIndex][columnIndex] === 0) {
-      const newBoard = [...board];
-      newBoard[rowIndex][columnIndex] = turnP1 ? "x" : "o";
-      setBoard(newBoard);
-      if (counter > 4) {
+    if ((yourPlayer == "x" && turnX) || (yourPlayer == "o" && !turnX)) {
 
-        let winnerArray = check(rowIndex, columnIndex, newBoard);
-        if (winnerArray) {
+      setCounter(counter => counter + 1);
+      // console.log(counter)
+      if (board[rowIndex][columnIndex] === '') {
+        const newBoard = [...board];
+        newBoard[rowIndex][columnIndex] = turnX ? "x" : "o";
+        setBoard(newBoard);
+        if (counter > 4) {
+
+          let winnerArray = check(rowIndex, columnIndex, newBoard);
+          if (winnerArray) {
+            setCounter(1);
+            setWinRow(winnerArray);
+            turnX ? setWinner("x") : setWinner("o");
+            turnX ? setPrevWins(prevWins => ({ ...prevWins, x: prevWins.x + 1 })) : setPrevWins(prevWins => ({ ...prevWins, o: prevWins.o + 1 }));
+          }
+        }
+
+        setTurnX(!turnX);
+        if (isSolo) {
+          botPlayer(newBoard)
           setCounter(1);
-          setWinRow(winnerArray);
-          turnP1 ? setWinner("x") : setWinner("o");
-          turnP1 ? setPrevWins(prevWins => ({ ...prevWins, x : prevWins.x + 1 })): setPrevWins(prevWins => ({ ...prevWins, o : prevWins.o + 1 }));
+          setTurnX(false);
         }
       }
 
-      setTurnP1(!turnP1);
+    }
+
+    const active = (RI, CI) => {
+      if (!winner) {
+        return true;
+      } else {
+        return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
+      }
     }
   }
-
-  const active = (RI, CI) => {
-    if (!winner) {
-      return true;
-    } else {
-      return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
-    }
-  };
 
   return (
     <div className={styles.board}>

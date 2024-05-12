@@ -9,10 +9,10 @@ import { useNavigate } from 'react-router-dom';
 export default function GamePage() {
 
   const nav = useNavigate();
-
+  const [isSolo, setIsSolo] = useState(location.pathname == '/solo')
   const [yourPlayer, setYourPlayer] = useState("");
   const [winner, setWinner] = useState('');
-  const [turnP1, setTurnP1] = useState(true);
+  const [turnX, setTurnX] = useState(true);
   const [prevWins, setPrevWins] = useState({ x: 0, o: 0 })
   const [board, setBoard] = useState([
     //   0  1  2
@@ -25,13 +25,13 @@ export default function GamePage() {
     setWinner('');
     setTurnP1(true);
     setBoard([
-      //   0  1  2
-      [0, 0, 0], // 0
-      [0, 0, 0], // 1
-      [0, 0, 0]  // 2
+  //   0  1  2
+      ['', '', ''], // 0
+      ['', '', ''], // 1
+      ['', '', '']  // 2
     ]);
   }
-  
+
   return (
     <div>
       {yourPlayer ?
@@ -40,9 +40,11 @@ export default function GamePage() {
           <Yellow turnP1={turnP1} prevWins={prevWins} winner={winner} setWinner={setWinner} />
 
           <Board
+            yourPlayer={yourPlayer} 
+            isSolo={isSolo}
             setWinner={setWinner}
-            turnP1={turnP1}
-            setTurnP1={setTurnP1}
+            turnX={turnX}
+            setTurnX={setTurnX}
             board={board}
             setBoard={setBoard}
             winner={winner}
