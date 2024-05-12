@@ -1,0 +1,69 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    background-color: var(--bg-color);
+    padding: 30px;
+
+    .back {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        width: 85px;
+        height: 65px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: var(--btn-color);
+        border: none;
+        box-shadow: 0 1px 0 white, 0 10px 0 var(--btn-sub-color);
+
+        svg {
+            overflow: visible;
+            width: 100%;
+            fill: white;
+            stroke: var(--btn-text-border);
+            stroke-width: 30px;
+            z-index: 10;
+        }
+    }
+
+    h1 {
+        color: white;
+        -webkit-text-stroke: 7px black;
+        paint-order: stroke fill;
+        letter-spacing: 2px;
+        filter: drop-shadow(0 0 50px rgb(148, 227, 255)) drop-shadow(0 0 50px rgb(77, 208, 255));
+    }
+
+}
+
+.choose {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.or {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    span {
+        width: 35%;
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.493);
+    }
+}
