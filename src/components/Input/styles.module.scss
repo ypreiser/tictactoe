@@ -26,8 +26,11 @@
         -webkit-text-stroke: 5px black;
         paint-order: stroke fill;
         font-size: 40px;
-        letter-spacing: 1.8rem;
+        letter-spacing: 1rem;
         text-align: center;
+        &::target-text{
+            color: #000;
+        }
     }
     
     &:placeholder-shown {
