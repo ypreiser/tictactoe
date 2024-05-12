@@ -6,6 +6,10 @@
     align-items: center;
     margin-bottom: 25%;
     z-index: 8;
+    &.winning{
+        margin-bottom: 50%;
+        
+    }
 }
 
 

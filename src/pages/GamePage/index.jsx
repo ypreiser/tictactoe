@@ -10,6 +10,7 @@ export default function GamePage() {
   const [yourPlayer, setYourPlayer] = useState("");
   const [winner, setWinner] = useState('');
   const [turnP1, setTurnP1] = useState(true);
+  const [prevWins, setPrevWins] = useState({ x: 0, o: 0 })
   const [board, setBoard] = useState([
     //   0  1  2
     [0, 0, 0], // 0
@@ -23,7 +24,7 @@ export default function GamePage() {
       {yourPlayer ?
         // game page comp
         <div className={styles.container}>
-          <Yellow turnP1={turnP1} />
+          <Yellow turnP1={turnP1} prevWins={prevWins} winner={winner} setWinner={setWinner} />
 
           <Board
             setWinner={setWinner}
@@ -32,6 +33,7 @@ export default function GamePage() {
             board={board}
             setBoard={setBoard}
             winner={winner}
+            setPrevWins={setPrevWins}
           />
 
           {winner ?
