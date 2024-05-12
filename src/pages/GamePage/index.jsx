@@ -16,14 +16,14 @@ export default function GamePage() {
   const [prevWins, setPrevWins] = useState({ x: 0, o: 0 })
   const [board, setBoard] = useState([
     //   0  1  2
-    [0, 0, 0], // 0
-    [0, 0, 0], // 1
-    [0, 0, 0]  // 2
+    ['', '', ''], // 0
+    ['', '', ''], // 1
+    ['', '', '']  // 2
   ]);
 
   const playAgain = () => {
     setWinner('');
-    setTurnP1(true);
+    setTurnX(true);
     setBoard([
   //   0  1  2
       ['', '', ''], // 0
@@ -32,12 +32,13 @@ export default function GamePage() {
     ]);
   }
 
+
   return (
     <div>
       {yourPlayer ?
         // game page comp
         <div className={styles.container}>
-          <Yellow turnP1={turnP1} prevWins={prevWins} winner={winner} setWinner={setWinner} />
+          <Yellow turnX={turnX} prevWins={prevWins} winner={winner} setWinner={setWinner} />
 
           <Board
             yourPlayer={yourPlayer} 

@@ -12,7 +12,7 @@ export default function JoinGame({ logo }) {
 
   const [create, setCreate] = useState(false);
   const [yourPlayer, setYourPlayer] = useState("");
-  const [gameCode, setGameCode] = useState("649117");
+  const [gameCode, setGameCode] = useState("");
 
   // קבלת קוד מהשרת והגדרת הסטייט שכאן
 
@@ -39,7 +39,7 @@ export default function JoinGame({ logo }) {
         :
         <>
           <h1>Join to a game</h1>
-          <Input gameCode={gameCode} setGameCode={setGameCode} />
+          <Input code={gameCode} setCode={setGameCode} />
           <Btn
             text={"join"}
             width={"35%"}
