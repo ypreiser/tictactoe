@@ -4,8 +4,11 @@ import ChoosePlayerPage from '../ChoosePlayerPage'
 import Board from '../../components/Board';
 import Btn from '../../components/Btn';
 import Yellow from '../../components/Yellow'
+import { useNavigate } from 'react-router-dom';
 
 export default function GamePage() {
+
+  const nav = useNavigate();
 
   const [yourPlayer, setYourPlayer] = useState("");
   const [winner, setWinner] = useState('');
@@ -17,7 +20,17 @@ export default function GamePage() {
     [0, 0, 0]  // 2
   ]);
 
-
+  const playAgain = () => {
+    setWinner('');
+    setTurnP1(true);
+    setBoard([
+      //   0  1  2
+      [0, 0, 0], // 0
+      [0, 0, 0], // 1
+      [0, 0, 0]  // 2
+    ]);
+  }
+  
   return (
     <div>
       {yourPlayer ?
@@ -35,11 +48,13 @@ export default function GamePage() {
           />
 
           {winner ?
-            <div className={styles.buttons}>
-              <Btn text='Play Again' size={"23px"} width={"210px"} />
-              <Btn text='Back to main' size={"23px"} width={"210px"} />
+            <div className={winner ? `${styles.buttons} ${styles.winner}` : styles.buttons}>
+              <Btn text='Play Again' size={"23px"} width={"210px"} onClick={playAgain} key='playAgain' />
+              <Btn text='Back to main' size={"23px"} width={"210px"} onClick={() => nav('/')} key='backToMain' />
             </div> :
-            <Btn text='Back' />
+            <div className={styles.buttons}>
+              <Btn text='Back' size={"23px"} width={"210px"} onClick={() => nav('/')} key='back' />
+            </div>
           }
         </div>
         : <ChoosePlayerPage setYourPlayer={setYourPlayer} />}

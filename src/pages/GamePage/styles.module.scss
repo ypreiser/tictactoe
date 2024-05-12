@@ -16,4 +16,11 @@
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    height: 60px;
+    transition: 0.3s;
+}
+
+.winner{
+    height: 150px;
+    transition: 0.3s;
 }

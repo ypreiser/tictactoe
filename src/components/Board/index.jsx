@@ -15,7 +15,7 @@ export default function Board({ setWinner, winner, turnP1, setTurnP1, board, set
   const check = israelCheck
   const handleClick = (rowIndex, columnIndex) => {
     setCounter(counter => counter + 1);
-    console.log(counter)
+    // console.log(counter)
     if (board[rowIndex][columnIndex] === 0) {
       const newBoard = [...board];
       newBoard[rowIndex][columnIndex] = turnP1 ? "x" : "o";
@@ -24,6 +24,7 @@ export default function Board({ setWinner, winner, turnP1, setTurnP1, board, set
 
         let winnerArray = check(rowIndex, columnIndex, newBoard);
         if (winnerArray) {
+          setCounter(1);
           setWinRow(winnerArray);
           turnP1 ? setWinner("x") : setWinner("o");
           // alert(winner + " win!");
@@ -46,8 +47,14 @@ export default function Board({ setWinner, winner, turnP1, setTurnP1, board, set
     <div className={styles.board}>
       {board.map((row, rowIndex) => (
         row.map((cell, columnIndex) => (
-          <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
-            <Square player={cell} active={active(rowIndex, columnIndex)} />
+          <div
+            className={styles.cell}
+            key={`${rowIndex}-${columnIndex}`}
+            onClick={() => handleClick(rowIndex, columnIndex)}>
+            <Square
+              player={cell}
+              active={active(rowIndex, columnIndex)}
+              choosen={winner && active(rowIndex, columnIndex)} />
           </div>
         ))
       ))}

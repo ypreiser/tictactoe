@@ -8,7 +8,6 @@
     z-index: 8;
 }
 
-
 .relative {
     position: relative;
 }
@@ -48,7 +47,6 @@
     left: -15%;
     bottom: -1px;
     z-index: 2;
-
 }
 
 .name {
@@ -59,7 +57,8 @@
     -webkit-text-stroke: 7px #4B4B4B;
     paint-order: stroke fill;
     font-size: 25px;
-    &.turn{
+
+    &.turn {
         font-size: 30px;
 
     }
@@ -75,10 +74,10 @@
     z-index: 0;
     overflow: visible;
     background-color: white;
+
     &.turn {
         height: 130px;
         border: #8EEBFF solid 7px;
     }
 
 }
-
