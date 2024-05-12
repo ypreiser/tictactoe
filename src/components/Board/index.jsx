@@ -1,14 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import styles from './styles.module.scss'
 import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
+import botPlayer from '../../functions/botPlayer';
 
-export default function Board({ setWinner, winner, turnX, setTurnX, board, setBoard, setPrevWins, isSolo, yourPlayer }) {
+export default function Board({
+  setWinner,
+  winner,
+  turnX,
+  setTurnX,
+  board,
+  setBoard,
+  setPrevWins,
+  isSolo,
+  yourPlayer
+}) {
 
   const [counter, setCounter] = useState(1);
   const [winRow, setWinRow] = useState([]);
+
+  useEffect(() => {
+    // console.log({ counter })
+    if (
+      !winner && isSolo && counter < 10 &&
+      (yourPlayer == "x" && !turnX || yourPlayer == "o" && turnX)) {
+      setCounter(counter => counter + 1);
+      setTimeout(() => {
+        let symbol = turnX ? "o" : "x";
+        let botCell = botPlayer(board, symbol);
+        const newBoard = [...board];
+        newBoard[botCell[0]][botCell[1]] = turnX ? "x" : "o";
+        setBoard(newBoard);
+        if (counter > 4) {
+
+          let winnerArray = check(botCell[0], botCell[1], newBoard);
+          if (winnerArray) {
+            setCounter(1);
+            setWinRow(winnerArray);
+            turnX ? setWinner("x") : setWinner("o");
+            turnX ? setPrevWins(prevWins => ({ ...prevWins, x: prevWins.x + 1 })) : setPrevWins(prevWins => ({ ...prevWins, o: prevWins.o + 1 }));
+          }
+        }
+        setTurnX(!turnX);
+      }, 100);
+    }
+  }, [turnX])
+
 
   // const board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // const check = ypreiserCheck
@@ -32,25 +71,21 @@ export default function Board({ setWinner, winner, turnX, setTurnX, board, setBo
             turnX ? setPrevWins(prevWins => ({ ...prevWins, x: prevWins.x + 1 })) : setPrevWins(prevWins => ({ ...prevWins, o: prevWins.o + 1 }));
           }
         }
-
         setTurnX(!turnX);
-        if (isSolo) {
-          botPlayer(newBoard)
-          setCounter(1);
-          setTurnX(false);
-        }
-      }
-
-    }
-
-    const active = (RI, CI) => {
-      if (!winner) {
-        return true;
-      } else {
-        return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
       }
     }
   }
+
+
+  const active = (RI, CI) => {
+    if (!winner) {
+      return true;
+    } else {
+      return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
+    }
+  }
+
+  console.log({ board })
 
   return (
     <div className={styles.board}>
@@ -70,3 +105,4 @@ export default function Board({ setWinner, winner, turnX, setTurnX, board, setBo
     </div>
   )
 }
+
