@@ -3,23 +3,23 @@ import styles from './styles.module.scss'
 
 
 
-export default function Player({ wins = 0, name = "", symble = "x", turn=false}) {
+export default function Player({ prevWins, name = "", symble = "x", turn, winning }) {
     const symbleImg = `${symble}.svg`
     const avatar = `${symble}.avatar.png`
     if (!name) name = `Player ${symble}`
     return (
-        <div className={styles.player}>
+        <div className={winning ? `${styles.player} ${styles.winning}` : styles.player}>
 
             <div className={styles.relative}>
-                <img className={turn? `${styles.avatar} ${styles.turn}`: styles.avatar} src={avatar} alt={name} />
+                <img className={turn ? `${styles.avatar} ${styles.turn}` : styles.avatar} src={avatar} alt={name} />
                 <div className={styles.absolute}>
                     <img className={styles.symble} src={symbleImg} alt={symble} />
-                    <div className={styles.wins}>Wins: {wins}</div>
+                    <div className={styles.wins}>Wins: {prevWins[symble]}</div>
                 </div>
             </div>
 
 
-            <div className={turn? `${styles.name} ${styles.turn}`: styles.name}>{name}</div>
+            <div className={turn ? `${styles.name} ${styles.turn}` : styles.name}>{name}</div>
         </div>
     )
 }

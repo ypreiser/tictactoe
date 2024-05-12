@@ -1,8 +1,8 @@
-.relative{
+.relative {
     height: 100px;
     width: 100%;
     position: relative;
-    
+
     .yellow {
         // margin-top: 150px;
         height: 100px;
@@ -15,7 +15,8 @@
         z-index: 3;
 
     }
-    .after   {
+
+    .after {
         transform: scaleX(2);
         position: absolute;
         top: 0;

@@ -5,7 +5,7 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board({ setWinner, winner, turnP1, setTurnP1, board, setBoard }) {
+export default function Board({ setWinner, winner, turnP1, setTurnP1, board, setBoard, setPrevWins }) {
 
   const [counter, setCounter] = useState(1);
   const [winRow, setWinRow] = useState([]);
@@ -27,7 +27,7 @@ export default function Board({ setWinner, winner, turnP1, setTurnP1, board, set
           setCounter(1);
           setWinRow(winnerArray);
           turnP1 ? setWinner("x") : setWinner("o");
-          // alert(winner + " win!");
+          turnP1 ? setPrevWins(prevWins => ({ ...prevWins, x : prevWins.x + 1 })): setPrevWins(prevWins => ({ ...prevWins, o : prevWins.o + 1 }));
         }
       }
 
