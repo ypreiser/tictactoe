@@ -1,8 +1,7 @@
-input {
-    overflow: hidden;
+.input {
+    // overflow: hidden;
     height: 100px;
     width: 100%;
-    padding: 30px;
     border: solid black 6px;
     border-radius: 16px;
     box-shadow: -5px 3px 0px 3px rgba(0, 0, 0, 1);
@@ -17,8 +16,6 @@ input {
     font-style: normal;
     font-weight: 400;
     color: #CDCDCD;
-    
-
 
     &:active,
     &:focus {
@@ -26,19 +23,20 @@ input {
     }
 
     &:not(:placeholder-shown) {
-        -webkit-text-stroke: 3px black;
+        -webkit-text-stroke: 5px black;
         paint-order: stroke fill;
         font-size: 40px;
         letter-spacing: 1.8rem;
         text-align: center;
     }
-
+    
     &:placeholder-shown {
-
-        color: #CDCDCD;
+        padding: 30px;
         font-size: 20px;
-
+        font-weight: 300;
     }
 
-
+    &::placeholder {
+        color: #CDCDCD;
+    }
 }
