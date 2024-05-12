@@ -5,34 +5,29 @@ import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
 
-export default function Board() {
+export default function Board({ setWinner, winner, turnP1, setTurnP1, board, setBoard, setPrevWins }) {
 
-  const [turnP1, setTurnP1] = useState(true);
-  const [winner, setWinner] = useState('');
   const [counter, setCounter] = useState(1);
+  const [winRow, setWinRow] = useState([]);
 
-  const [board, setBoard] = useState([
-    //   0  1  2
-    [0, 0, 0], // 0
-    [0, 0, 0], // 1
-    [0, 0, 0]  // 2
-  ]);
   // const board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // const check = ypreiserCheck
   const check = israelCheck
   const handleClick = (rowIndex, columnIndex) => {
     setCounter(counter => counter + 1);
-    console.log(counter)
+    // console.log(counter)
     if (board[rowIndex][columnIndex] === 0) {
       const newBoard = [...board];
       newBoard[rowIndex][columnIndex] = turnP1 ? "x" : "o";
       setBoard(newBoard);
       if (counter > 4) {
 
-        let isWinner = check(rowIndex, columnIndex, newBoard);
-        if (isWinner) {
+        let winnerArray = check(rowIndex, columnIndex, newBoard);
+        if (winnerArray) {
+          setCounter(1);
+          setWinRow(winnerArray);
           turnP1 ? setWinner("x") : setWinner("o");
-          alert(winner + " win!");
+          turnP1 ? setPrevWins(prevWins => ({ ...prevWins, x : prevWins.x + 1 })): setPrevWins(prevWins => ({ ...prevWins, o : prevWins.o + 1 }));
         }
       }
 
@@ -40,18 +35,29 @@ export default function Board() {
     }
   }
 
+  const active = (RI, CI) => {
+    if (!winner) {
+      return true;
+    } else {
+      return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
+    }
+  };
+
   return (
     <div className={styles.board}>
-      <div className={styles.grid}>
-        {board.map((row, rowIndex) => (
-          row.map((cell, columnIndex) => (
-            <div className={styles.cell} key={`${rowIndex}-${columnIndex}`} onClick={() => handleClick(rowIndex, columnIndex)}>
-              <Square player={cell} />
-            </div>
-          ))
-        ))}
-      </div>
-      {/* {winner && <div>{winner} win!</div>} */}
+      {board.map((row, rowIndex) => (
+        row.map((cell, columnIndex) => (
+          <div
+            className={styles.cell}
+            key={`${rowIndex}-${columnIndex}`}
+            onClick={() => handleClick(rowIndex, columnIndex)}>
+            <Square
+              player={cell}
+              active={active(rowIndex, columnIndex)}
+              choosen={winner && active(rowIndex, columnIndex)} />
+          </div>
+        ))
+      ))}
     </div>
   )
 }

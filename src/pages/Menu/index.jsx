@@ -14,12 +14,12 @@ export default function Menu({ logo }) {
         <Btn
           text={"Play solo"}
           width={"100%"}
-          size={"30px"}
+          size={"28px"}
           onClick={() => nav('/solo')} />
         <Btn
           text={"play with a friend"}
           width={"100%"}
-          size={"30px"}
+          size={"28px"}
           onClick={() => nav('/multyPlayer')} />
       </div>
     </div>

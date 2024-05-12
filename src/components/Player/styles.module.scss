@@ -1,23 +1,33 @@
 .player {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25%;
+    z-index: 8;
+    &.winning{
+        margin-bottom: 50%;
+        
+    }
 }
-.relative{
+
+.relative {
     position: relative;
 }
+
 .absolute {
     position: absolute;
     bottom: -10%;
-    left: 25%;
+    left: 12%;
 }
 
 .wins {
-    height: 75px;
-    width: 150px;
-    border-radius: 12px;
+    white-space: nowrap;
+    padding: 13px;
+    height: 20px;
+    // width: 60px;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,22 +35,24 @@
     font-weight: 400;
     font-style: normal;
     color: white;
-    font-size: 24px;
+    font-size: 10px;
     background-color: black;
     position: relative;
     margin-left: 8px;
     z-index: 1;
+    letter-spacing: 0;
 }
 
 .symble {
     position: absolute;
-    height: 100px;
-    width: 90px;
-    left: -35%;
-    bottom: 0;
+    // height: 25px;
+    width: 35px;
+    aspect-ratio: 1;
+    left: -15%;
+    bottom: -1px;
     z-index: 2;
-
 }
+
 .name {
     font-family: "Luckiest Guy", cursive;
     font-weight: 400;
@@ -48,15 +60,28 @@
     color: #fff;
     -webkit-text-stroke: 7px #4B4B4B;
     paint-order: stroke fill;
-    font-size: 64px;
+    font-size: 25px;
+
+    &.turn {
+        font-size: 30px;
+
+    }
 
 
 }
 
 .avatar {
-    height: 330px;
+    height: 100px;
     aspect-ratio: 1/1;
-    border: #8EEBFF solid 10px;
+    border: #B28100 solid 3px;
     border-radius: 100%;
     z-index: 0;
+    overflow: visible;
+    background-color: white;
+
+    &.turn {
+        height: 130px;
+        border: #8EEBFF solid 7px;
+    }
+
 }
