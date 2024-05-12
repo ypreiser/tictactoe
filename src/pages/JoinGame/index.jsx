@@ -39,7 +39,7 @@ export default function JoinGame({ logo }) {
         :
         <>
           <h1>Join to a game</h1>
-          <Input />
+     <Input code={code} setCode={setCode} />
           <Btn
             text={"join"}
             width={"35%"}
