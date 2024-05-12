@@ -8,7 +8,7 @@ export default function Player({ prevWins, name = "", symble = "x", turn, winnin
     const avatar = `${symble}.avatar.png`
     if (!name) name = `Player ${symble}`
     return (
-        <div className={winning ? `${styles.player} ${styles.winning}` : styles.player}>
+        <div className={winning ? styles.winning : styles.player}>
 
             <div className={styles.relative}>
                 <img className={turn ? `${styles.avatar} ${styles.turn}` : styles.avatar} src={avatar} alt={name} />
@@ -19,7 +19,9 @@ export default function Player({ prevWins, name = "", symble = "x", turn, winnin
             </div>
 
 
-            <div className={turn ? `${styles.name} ${styles.turn}` : styles.name}>{name}</div>
+            <div className={turn ? `${styles.name} ${styles.turn}` : styles.name}>
+                {winning ? name + ' WINS!!!' : name}
+                </div>
         </div>
     )
 }

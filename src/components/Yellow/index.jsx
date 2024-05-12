@@ -4,7 +4,7 @@ import Player from '../Player'
 
 export default function Yellow({ turnP1, prevWins, winner, setWinner }) {
     return (
-        <div className={styles.relative} onClick={()=>setWinner('x')}>
+        <div className={styles.relative}>
             <div className={styles.yellow}>
                 {
                     winner
