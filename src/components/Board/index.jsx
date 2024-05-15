@@ -4,8 +4,8 @@ import styles from './styles.module.scss'
 import israelCheck from '../../functions/IsraelCheck';
 import ypreiserCheck from '../../functions/ypreiserCheck';
 import Square from '../Square';
-import botPlayer from '../../functions/botPlayer';
-
+// import botPlayer from '../../functions/botPlayer';
+import botPlayer from '../../functions/newBot';
 export default function Board({
   setWinner,
   winner,
@@ -22,18 +22,18 @@ export default function Board({
   const [winRow, setWinRow] = useState([]);
 
   useEffect(() => {
-    // console.log({ counter })
+    console.log({ counter })
     if (
       !winner && isSolo && counter < 10 &&
       (yourPlayer == "x" && !turnX || yourPlayer == "o" && turnX)) {
-      setCounter(counter => counter + 1);
-      setTimeout(() => {
-        let symbol = turnX ? "o" : "x";
-        let botCell = botPlayer(board, symbol);
-        const newBoard = [...board];
-        newBoard[botCell[0]][botCell[1]] = turnX ? "x" : "o";
-        setBoard(newBoard);
-        if (counter > 4) {
+        setCounter(counter => counter + 1);
+        setTimeout(() => {
+          let botSymbol = yourPlayer == "x" ? "o" : "x";
+          let botCell = botPlayer(board, botSymbol);
+          const newBoard = [...board];
+          newBoard[botCell[0]][botCell[1]] = turnX ? "x" : "o";
+          setBoard(newBoard);
+          if (counter > 4) {
 
           let winnerArray = check(botCell[0], botCell[1], newBoard);
           if (winnerArray) {
@@ -85,7 +85,7 @@ export default function Board({
     }
   }
 
-  console.log({ board })
+  // console.log({ board })
 
   return (
     <div className={styles.board}>
