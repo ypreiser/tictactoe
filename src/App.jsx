@@ -19,7 +19,8 @@ function App() {
           <Route path='testboard' element={<Board />} />
           <Route path='testplayer' element={<Yellow />} />
           <Route path='multyPlayer'>
-            <Route index element={<JoinGame />} />
+            {/* <Route index element={<JoinGame />} /> */}
+            <Route index element={<GamePage />} />
             <Route path='game' element={<GamePage />} />
           </Route>
         </Route>

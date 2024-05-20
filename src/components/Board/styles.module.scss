@@ -20,3 +20,27 @@
     justify-content: center;
     align-items: center;
 }
+
+.draw {
+    rotate: -15deg;
+    color: #FCD015;
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-text-stroke: 13px black;
+    paint-order: stroke fill;
+    font-size: 100px;
+    z-index: 100;
+    position: absolute;
+    bottom: -50%; /* Start the draw message below the board */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0; /* Initially hide the draw message */
+    transition: opacity 0.3s ease-in, bottom 0.3s ease-in; /* Add transitions for opacity and bottom */
+  }
+  
+  .draw.show {
+    opacity: 1; /* Show the draw message when the 'show' class is applied */
+    bottom: 50%; /* Move the draw message to the center */
+  }
+  
