@@ -1,4 +1,4 @@
-.container{
+.container {
     width: 100%;
     height: 100vh;
     background-color: var(--bg-color);
@@ -8,20 +8,25 @@
     justify-content: center;
     // padding: 20px;
     gap: 60px;
-    overflow-x: hidden;
-    padding-top: 30px;
+    overflow: hidden;
+    padding-top: 5%;
+    @media (min-width: 960px) {
+        gap: 20px;
+        padding-top: 0%;
+    }
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 25px;
     height: 60px;
     transition: 0.3s;
+    flex-shrink: 1;
 }
 
-.winner{
+.winner {
     height: 150px;
     transition: 0.3s;
 }

@@ -15,27 +15,31 @@ export default function Board({
   setBoard,
   setPrevWins,
   isSolo,
-  yourPlayer
+  yourPlayer,
+  counter,
+  setCounter,
 }) {
 
-  const [counter, setCounter] = useState(1);
   const [winRow, setWinRow] = useState([]);
+  let botSymbol = yourPlayer == "x" ? "o" : "x";
+  // console.log({ botSymbol });
 
   useEffect(() => {
-    console.log({ counter })
+    // console.log({ counter })
     if (
       !winner && isSolo && counter < 10 &&
       (yourPlayer == "x" && !turnX || yourPlayer == "o" && turnX)) {
-        setCounter(counter => counter + 1);
-        setTimeout(() => {
-          let botSymbol = yourPlayer == "x" ? "o" : "x";
-          let botCell = botPlayer(board, botSymbol);
-          const newBoard = [...board];
-          newBoard[botCell[0]][botCell[1]] = turnX ? "x" : "o";
-          setBoard(newBoard);
-          if (counter > 4) {
+      setCounter(counter => counter + 1);
+
+      setTimeout(() => {
+        let botCell = botPlayer(board, botSymbol);
+        const newBoard = [...board];
+        newBoard[botCell[0]][botCell[1]] = turnX ? "x" : "o";
+        setBoard(newBoard);
+        if (counter > 4) {
 
           let winnerArray = check(botCell[0], botCell[1], newBoard);
+          console.log({ winnerArray });
           if (winnerArray) {
             setCounter(1);
             setWinRow(winnerArray);
@@ -44,16 +48,16 @@ export default function Board({
           }
         }
         setTurnX(!turnX);
-      }, 100);
+      }, 500);
     }
-  }, [turnX])
+  }, [turnX, winner])
 
 
   // const board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // const check = ypreiserCheck
   const check = israelCheck
   const handleClick = (rowIndex, columnIndex) => {
-    if ((yourPlayer == "x" && turnX) || (yourPlayer == "o" && !turnX)) {
+    if ((!winner && !isSolo && counter < 10) || ((yourPlayer == "x" && turnX) || (yourPlayer == "o" && !turnX))) {
 
       setCounter(counter => counter + 1);
       // console.log(counter)
@@ -78,16 +82,18 @@ export default function Board({
 
 
   const active = (RI, CI) => {
-    if (!winner) {
-      return true;
+    if (winner) {
+      return winRow.some(cell => JSON.stringify(cell) === JSON.stringify([RI, CI]));
+    } else if (counter === 10) {
+      return false;
     } else {
-      return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
+      return true;
     }
   }
-
-  // console.log({ board })
+  // console.log({ counter })
 
   return (
+
     <div className={styles.board}>
       {board.map((row, rowIndex) => (
         row.map((cell, columnIndex) => (
@@ -102,6 +108,7 @@ export default function Board({
           </div>
         ))
       ))}
+       <div className={(counter == 10 && !winner)? `${styles.draw} ${styles.show}`: `${styles.draw}`}>draw!</div>
     </div>
   )
 }

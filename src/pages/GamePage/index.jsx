@@ -12,6 +12,7 @@ export default function GamePage() {
   const [isSolo, setIsSolo] = useState(location.pathname == '/solo')
   const [yourPlayer, setYourPlayer] = useState("");
   const [winner, setWinner] = useState('');
+  const [counter, setCounter] = useState(1);
   const [turnX, setTurnX] = useState(true);
   const [prevWins, setPrevWins] = useState({ x: 0, o: 0 })
   const [board, setBoard] = useState([
@@ -24,8 +25,9 @@ export default function GamePage() {
   const playAgain = () => {
     setWinner('');
     setTurnX(true);
+    setCounter(1);
     setBoard([
-  //   0  1  2
+      //   0  1  2
       ['', '', ''], // 0
       ['', '', ''], // 1
       ['', '', '']  // 2
@@ -33,15 +35,16 @@ export default function GamePage() {
   }
 
 
+
   return (
     <div>
-      {yourPlayer ?
+      {(yourPlayer || !isSolo) ?
         // game page comp
         <div className={styles.container}>
-          <Yellow turnX={turnX} prevWins={prevWins} winner={winner} setWinner={setWinner} />
+          <Yellow turnX={turnX} prevWins={prevWins} winner={winner} setWinner={setWinner} counter={counter} />
 
           <Board
-            yourPlayer={yourPlayer} 
+            yourPlayer={yourPlayer}
             isSolo={isSolo}
             setWinner={setWinner}
             turnX={turnX}
@@ -50,9 +53,11 @@ export default function GamePage() {
             setBoard={setBoard}
             winner={winner}
             setPrevWins={setPrevWins}
+            counter={counter}
+            setCounter={setCounter}
           />
 
-          {winner ?
+          {(winner || counter == 10) ?
             <div className={winner ? `${styles.buttons} ${styles.winner}` : styles.buttons}>
               <Btn text='Play Again' size={"23px"} width={"210px"} onClick={playAgain} key='playAgain' />
               <Btn text='Back to main' size={"23px"} width={"210px"} onClick={() => nav('/')} key='backToMain' />
@@ -61,6 +66,7 @@ export default function GamePage() {
               <Btn text='Back' size={"23px"} width={"210px"} onClick={() => nav('/')} key='back' />
             </div>
           }
+
         </div>
         : <ChoosePlayerPage setYourPlayer={setYourPlayer} />}
     </div>
