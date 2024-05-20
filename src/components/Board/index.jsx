@@ -22,7 +22,7 @@ export default function Board({
 
   const [winRow, setWinRow] = useState([]);
   let botSymbol = yourPlayer == "x" ? "o" : "x";
-  console.log({ botSymbol });
+  // console.log({ botSymbol });
 
   useEffect(() => {
     // console.log({ counter })
@@ -30,7 +30,7 @@ export default function Board({
       !winner && isSolo && counter < 10 &&
       (yourPlayer == "x" && !turnX || yourPlayer == "o" && turnX)) {
       setCounter(counter => counter + 1);
-      
+
       setTimeout(() => {
         let botCell = botPlayer(board, botSymbol);
         const newBoard = [...board];
@@ -39,7 +39,7 @@ export default function Board({
         if (counter > 4) {
 
           let winnerArray = check(botCell[0], botCell[1], newBoard);
-          console.log({winnerArray});
+          console.log({ winnerArray });
           if (winnerArray) {
             setCounter(1);
             setWinRow(winnerArray);
@@ -48,7 +48,7 @@ export default function Board({
           }
         }
         setTurnX(!turnX);
-      }, 100);
+      }, 500);
     }
   }, [turnX, winner])
 
@@ -82,24 +82,25 @@ export default function Board({
 
 
   const active = (RI, CI) => {
-    if (!winner && counter < 10) {
-      return true;
+    if (winner) {
+      return winRow.some(cell => JSON.stringify(cell) === JSON.stringify([RI, CI]));
+    } else if (counter === 10) {
+      return false;
     } else {
-      return winRow.some(cell => JSON.stringify(cell) == JSON.stringify([RI, CI]));
+      return true;
     }
   }
-
-  // console.log({ board })
+  // console.log({ counter })
 
   return (
-    
+
     <div className={styles.board}>
       {board.map((row, rowIndex) => (
         row.map((cell, columnIndex) => (
           <div
-          className={styles.cell}
-          key={`${rowIndex}-${columnIndex}`}
-          onClick={() => handleClick(rowIndex, columnIndex)}>
+            className={styles.cell}
+            key={`${rowIndex}-${columnIndex}`}
+            onClick={() => handleClick(rowIndex, columnIndex)}>
             <Square
               player={cell}
               active={active(rowIndex, columnIndex)}
@@ -107,7 +108,7 @@ export default function Board({
           </div>
         ))
       ))}
-      {counter == 10 && !winner &&<div className={styles.draw}>draw!</div>}
+       <div className={(counter == 10 && !winner)? `${styles.draw} ${styles.show}`: `${styles.draw}`}>draw!</div>
     </div>
   )
 }
