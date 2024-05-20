@@ -17,7 +17,7 @@ export default function Menu({ logo }) {
           size={"28px"}
           onClick={() => nav('/solo')} />
         <Btn
-          text={"play with a friend"}
+          text={"play with a friend online"}
           width={"100%"}
           size={"28px"}
           onClick={() => nav('/multyPlayer')} />
