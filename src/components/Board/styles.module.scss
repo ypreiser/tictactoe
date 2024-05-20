@@ -33,15 +33,19 @@
   paint-order: stroke fill;
   font-size: 100px;
   z-index: 100;
-  position: absolute;
+  position: fixed;
   display: none;
-  bottom: 40%;
-  left: 5%;
+  width: 100vw;
+  // height: 100vh;
+  top: 46%;
+  right: 0;
 }
 
 .draw.show {
   animation: show 0.3s ease-in-out;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes show {
