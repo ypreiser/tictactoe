@@ -1,46 +1,57 @@
 .board {
-    width: 90%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    aspect-ratio: 1/1;
-    padding: 1rem;
-    border: solid black 6px;
-    border-radius: 10px;
-    box-shadow: -3px 3px 0px 3px rgba(0, 0, 0, 1);
-    background-color: white;
-    gap: 2px;
-    // margin: 50px;
+  width: 90%;
+  max-width: 380px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 1/1;
+  padding: 1rem;
+  border: solid black 6px;
+  border-radius: 10px;
+  box-shadow: -3px 3px 0px 3px rgba(0, 0, 0, 1);
+  background-color: white;
+  gap: 2px;
+  // margin: 50px;
+  position: relative;
 }
 
 .cell {
-    width: 100%;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .draw {
-    rotate: -15deg;
-    color: #FCD015;
-    font-family: "Luckiest Guy", cursive;
-    font-weight: 400;
-    font-style: normal;
-    -webkit-text-stroke: 13px black;
-    paint-order: stroke fill;
-    font-size: 100px;
-    z-index: 100;
-    position: absolute;
-    bottom: -50%; /* Start the draw message below the board */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0; /* Initially hide the draw message */
-    transition: opacity 0.3s ease-in, bottom 0.3s ease-in; /* Add transitions for opacity and bottom */
+  rotate: -15deg;
+  color: #FCD015;
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-stroke: 13px black;
+  paint-order: stroke fill;
+  font-size: 100px;
+  z-index: 100;
+  position: absolute;
+  display: none;
+  bottom: 40%;
+  left: 5%;
+}
+
+.draw.show {
+  animation: show 0.3s ease-in-out;
+  display: block;
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(500%);
+    opacity: 0;
   }
-  
-  .draw.show {
-    opacity: 1; /* Show the draw message when the 'show' class is applied */
-    bottom: 50%; /* Move the draw message to the center */
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
+}
