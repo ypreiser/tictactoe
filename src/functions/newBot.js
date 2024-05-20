@@ -1,5 +1,5 @@
 export default function botPlayer(board = [], botSymbol) {
-    console.log({botSymbol});
+    // console.log({botSymbol});
     const humanSymbol = botSymbol === 'x' ? 'o' : 'x';
 
     const checkRows = (playerSymbol, action) => {

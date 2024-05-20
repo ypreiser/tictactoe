@@ -20,3 +20,20 @@
     justify-content: center;
     align-items: center;
 }
+.draw {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    rotate: -15deg;
+    color: #FCD015;
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-text-stroke: 13px black;
+    paint-order: stroke fill;
+    font-size: 100px;
+
+
+  }
