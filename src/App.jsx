@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Menu from './pages/Menu'
 import GamePage from './pages/GamePage'
 import JoinGame from './pages/JoinGame'
-import styles from './styles.module.scss'
+import  './styles.scss'
 import Board from './components/Board'
 import Yellow from './components/Yellow'
 
