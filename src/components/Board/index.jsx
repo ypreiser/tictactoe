@@ -29,13 +29,13 @@ export default function Board({
     if (
       !winner && isSolo && counter < 10 &&
       (yourPlayer == "x" && !turnX || yourPlayer == "o" && turnX)) {
-      setCounter(counter => counter + 1);
 
       setTimeout(() => {
         let botCell = botPlayer(board, botSymbol);
         const newBoard = [...board];
         newBoard[botCell[0]][botCell[1]] = turnX ? "x" : "o";
         setBoard(newBoard);
+        setCounter(counter => counter + 1);
         if (counter > 4) {
 
           let winnerArray = check(botCell[0], botCell[1], newBoard);
@@ -59,12 +59,12 @@ export default function Board({
   const handleClick = (rowIndex, columnIndex) => {
     if ((!winner && !isSolo && counter < 10) || ((yourPlayer == "x" && turnX) || (yourPlayer == "o" && !turnX))) {
 
-      setCounter(counter => counter + 1);
       // console.log(counter)
       if (board[rowIndex][columnIndex] === '') {
         const newBoard = [...board];
         newBoard[rowIndex][columnIndex] = turnX ? "x" : "o";
         setBoard(newBoard);
+        setCounter(counter => counter + 1);
         if (counter > 4) {
 
           let winnerArray = check(rowIndex, columnIndex, newBoard);
@@ -108,7 +108,7 @@ export default function Board({
           </div>
         ))
       ))}
-       <div className={(counter == 10 && !winner)? `${styles.draw} ${styles.show}`: `${styles.draw}`}>draw!</div>
+      <div className={(counter == 10 && !winner) ? `${styles.draw} ${styles.show}` : `${styles.draw}`}>draw!</div>
     </div>
   )
 }
